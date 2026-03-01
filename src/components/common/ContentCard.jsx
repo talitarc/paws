@@ -27,8 +27,8 @@ const ContentCard = ({ pet, onAction }) => {
   const opacity = useTransform(x, [-200, -150, 0, 150, 200], [0, 1, 1, 1, 0]);
 
   const handleDragEnd = (event, info) => {
-    if (info.offset.x > 150) onAction("right");
-    else if (info.offset.x < -150) onAction("left");
+    if (info.offset.x > 150) onAction("like");
+    else if (info.offset.x < -150) onAction("goLeft");
   };
 
   return (
@@ -51,7 +51,7 @@ const ContentCard = ({ pet, onAction }) => {
       {pet ? (
         <>
           <Button
-            onClick={() => onAction("left")}
+            onClick={() => onAction("goLeft")}
             sx={contentArrowButton}
             aria-label="Go to previous pet"
           >
@@ -93,7 +93,7 @@ const ContentCard = ({ pet, onAction }) => {
                 </Box>
                 <Button
                   variant="contained"
-                  onClick={() => console.log("Pet liked")}
+                  onClick={() => onAction("like")}
                   sx={{
                     display: { xs: "none", md: "flex" },
                     backgroundColor: "#169453",
@@ -112,7 +112,7 @@ const ContentCard = ({ pet, onAction }) => {
             </CardContent>
           </Card>
           <Button
-            onClick={() => onAction("right")}
+            onClick={() => onAction("goRight")}
             sx={contentArrowButton}
             aria-label="Go to the next pet"
           >

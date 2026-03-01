@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import { Box, Stack, Typography } from "@mui/material";
 import Cancel from "@mui/icons-material/Close";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
-import { client, urlFor } from "../../sanityClient";
-import ContentCard from "../common/ContentCard";
-import ActionButton from "../common/ActionButton";
-import { mainContentStyles } from "./MainContent.styles";
+import { client, urlFor } from "../sanityClient";
+import ContentCard from "../components/common/ContentCard";
+import ActionButton from "../components/common/ActionButton";
+import { findAPetStyles } from "./FindAPet.styles";
 
-const MainContent = () => {
+const FindAPet = () => {
   const [pets, setPets] = useState([]);
-  const { mainContentBox, swipeCardBox, buttonStack } = mainContentStyles;
+  const { swipeCardBox, buttonStack } = findAPetStyles;
 
   useEffect(() => {
     const query = '*[_type == "pet"]';
@@ -30,13 +30,33 @@ const MainContent = () => {
     });
   }, []);
 
-  const handleAction = (direction) => {
+  const handleAction = (action) => {
+    const currentPet = pets[0];
+
+    if (action === "like") {
+      saveToFavorites(currentPet);
+    }
+
     setPets((prev) => prev.slice(1));
-    console.log(`Action: ${direction}`);
+  };
+
+  const saveToFavorites = (pet) => {
+    const existingFavorites =
+      JSON.parse(localStorage.getItem("paws_favorites")) || [];
+
+    const isAlreadySaved = existingFavorites.some((fav) => fav.id === pet.id);
+
+    if (!isAlreadySaved) {
+      const updatedFavorites = [pet, ...existingFavorites];
+
+      localStorage.setItem("paws_favorites", JSON.stringify(updatedFavorites));
+
+      console.log(`${pet.name} saved to favorites! 🐾`);
+    }
   };
 
   return (
-    <Box sx={mainContentBox}>
+    <>
       <Box sx={swipeCardBox}>
         {pets.length > 0 ? (
           <ContentCard key={pets[0].id} pet={pets[0]} onAction={handleAction} />
@@ -58,17 +78,17 @@ const MainContent = () => {
           ariaLabel="Pass this pet"
           icon={<Cancel sx={{ fontSize: 60 }} />}
           color="#C14F5A"
-          onClick={() => handleAction("left")}
+          onClick={() => handleAction("goLeft")}
         />
         <ActionButton
           ariaLabel="Like this pet"
           icon={<FavoriteBorder sx={{ fontSize: 60 }} />}
           color="#169453"
-          onClick={() => handleAction("right")}
+          onClick={() => handleAction("like")}
         />
       </Stack>
-    </Box>
+    </>
   );
 };
 
-export default MainContent;
+export default FindAPet;

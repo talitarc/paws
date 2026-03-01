@@ -7,7 +7,7 @@ import { headerMenuStyles } from "./HeaderMenu.styles";
 import HeaderLinks from "./HeaderLinks";
 
 const HeaderMenu = () => {
-  const { mobileMenu, desktopMenu } = headerMenuStyles;
+  const { mobileMenu, desktopMenu, menuBackdrop, menuPaper } = headerMenuStyles;
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
@@ -42,16 +42,10 @@ const HeaderMenu = () => {
               "aria-labelledby": "basic-button",
             },
             backdrop: {
-              sx: {
-                backgroundColor: "rgba(0, 0, 0, 0.8)",
-              },
+              sx: menuBackdrop,
             },
             paper: {
-              sx: {
-                minWidth: "250px",
-                transform: "scale(1.2)",
-                transformOrigin: "top right",
-              },
+              sx: menuPaper,
             },
           }}
         >

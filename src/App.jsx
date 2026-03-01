@@ -1,23 +1,16 @@
 import { Routes, Route } from "react-router-dom";
-import Header from "../src/components/layout/Header";
-import Footer from "../src/components/layout/Footer";
-import MainContent from "./components/layout/MainContent";
+import MainLayout from "./components/layout/MainLayout";
+import FindAPet from "./pages/FindAPet";
 import Favorites from "./pages/Favorites";
 
 function App() {
   return (
-    <>
-      <Header />
+    <MainLayout>
       <Routes>
-        {/* URL: localhost:5173/ */}
-        <Route path="/" element={<MainContent />} />
-
-        {/* URL: localhost:5173/favorites */}
+        <Route path="/" element={<FindAPet />} />
         <Route path="/favorites" element={<Favorites />} />
       </Routes>
-
-      <Footer />
-    </>
+    </MainLayout>
   );
 }
 

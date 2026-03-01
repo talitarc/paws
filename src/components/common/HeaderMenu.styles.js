@@ -5,4 +5,10 @@ export const headerMenuStyles = {
     flexDirection: "column",
     alignItems: "flex-end",
   },
+  menuBackdrop: { backgroundColor: "rgba(0, 0, 0, 0.6)" },
+  menuPaper: {
+    minWidth: "250px",
+    transform: "scale(1.2)",
+    transformOrigin: "top right",
+  },
 };
