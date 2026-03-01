@@ -22,4 +22,12 @@ export const contentCardStyles = {
     paddingRight: "8px",
     whiteSpace: "pre-line",
   },
+  moreInfoButton: {
+    display: { xs: "flex", md: "none" },
+    position: "absolute",
+    bottom: 20,
+    right: 20,
+    backgroundColor: "rgba(255,255,255,0.8)",
+    "&:hover": { backgroundColor: "#fff" },
+  },
 };

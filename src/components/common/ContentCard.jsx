@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import {
   Button,
@@ -5,22 +6,27 @@ import {
   Card,
   CardMedia,
   CardContent,
+  IconButton,
   Typography,
   Skeleton,
 } from "@mui/material";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import InfoIcon from "@mui/icons-material/Info";
+import DescriptionDrawer from "./DescriptionDrawer";
 import { contentCardStyles } from "./ContentCard.styles";
 
-const ContentCard = ({ pet, onAction }) => {
+const ContentCard = ({ item, onAction }) => {
   const {
     cardBox,
     cardContentBox,
     cardContentDescription,
     contentArrowButton,
+    moreInfoButton,
   } = contentCardStyles;
   const { name, sex, breed, age, image, alt, location, type, description } =
-    pet;
+    item;
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const x = useMotionValue(0);
 
   const rotate = useTransform(x, [-200, 200], [-25, 25]);
@@ -48,7 +54,7 @@ const ContentCard = ({ pet, onAction }) => {
       onDragEnd={handleDragEnd}
       whileTap={{ cursor: "grabbing" }}
     >
-      {pet ? (
+      {item ? (
         <>
           <Button
             onClick={() => onAction("goLeft")}
@@ -85,7 +91,7 @@ const ContentCard = ({ pet, onAction }) => {
                     {name}
                   </Typography>
                   <Typography variant="subtitle1" color="text.secondary">
-                    {sex} - {breed ? breed : type}, {age}
+                    {sex} - {breed || type}, {age}
                   </Typography>
                   <Typography variant="subtitle1" color="text.secondary">
                     {location}
@@ -118,6 +124,16 @@ const ContentCard = ({ pet, onAction }) => {
           >
             <KeyboardArrowRightIcon />
           </Button>
+          <IconButton onClick={() => setIsDrawerOpen(true)} sx={moreInfoButton}>
+            <InfoIcon color="text.secondary" />
+          </IconButton>
+
+          <DescriptionDrawer
+            open={isDrawerOpen}
+            onOpen={() => setIsDrawerOpen(true)}
+            onClose={() => setIsDrawerOpen(false)}
+            item={item}
+          />
         </>
       ) : (
         <Skeleton

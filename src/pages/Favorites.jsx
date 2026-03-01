@@ -11,16 +11,20 @@ import {
   IconButton,
   Box,
   Button,
+  Stack,
 } from "@mui/material";
-import { DeleteOutline, ChevronRight } from "@mui/icons-material";
+import { DeleteOutline, AddCircleOutline } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import DeleteConfirmDialog from "../components/common/DeleteConfirmDialog";
+import DescriptionDrawer from "../components/common/DescriptionDrawer";
 import { favoritesStyles } from "./Favorites.styles";
+import { contentCardStyles } from "../components/common/ContentCard.styles";
 
 const Favorites = () => {
   const [favorites, setFavorites] = useState([]);
   const [open, setOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
+  const [selectedItemForDrawer, setSelectedItemForDrawer] = useState(null);
   const {
     emptyListBox,
     emptyListMessage,
@@ -34,6 +38,7 @@ const Favorites = () => {
     favoriteDescription,
     favoriteMoreInfo,
   } = favoritesStyles;
+  const { moreInfoButton } = contentCardStyles;
 
   useEffect(() => {
     const savedItems = JSON.parse(localStorage.getItem("paws_favorites")) || [];
@@ -88,48 +93,71 @@ const Favorites = () => {
         {favorites.map((item, index) => (
           <React.Fragment key={item.id}>
             <ListItem
-              secondaryAction={
-                <IconButton
-                  edge="end"
-                  aria-label="delete"
-                  onClick={() => handleClickOpen(item)}
-                >
-                  <DeleteOutline sx={deleteFavorite} />
-                </IconButton>
-              }
-              sx={{ py: 2 }}
+              secondaryAction={null}
+              sx={{
+                py: 2,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
             >
-              <ListItemAvatar>
-                <Avatar src={item.image} alt={item.name} sx={favoriteAvatar} />
-              </ListItemAvatar>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  flexGrow: 1,
+                  minWidth: 0,
+                }}
+              >
+                <ListItemAvatar>
+                  <Avatar
+                    src={item.image}
+                    alt={item.name}
+                    sx={favoriteAvatar}
+                  />
+                </ListItemAvatar>
 
-              <ListItemText
-                primary={
-                  <Typography variant="h6" sx={favoriteName}>
-                    {item.name}
-                  </Typography>
-                }
-                secondary={
-                  <Box component="span" sx={favoriteDescription}>
-                    <Typography
-                      component="span"
-                      variant="body2"
-                      color="text.secondary"
-                    >
-                      {item.breed || item.type} • {item.age || "Unknown Age"}
+                <ListItemText
+                  primary={
+                    <Typography variant="h6" sx={favoriteName} noWrap>
+                      {item.name}
                     </Typography>
-                    <Typography
-                      component="span"
-                      variant="body2"
-                      color="text.secondary"
-                    >
-                      {item.location}
-                    </Typography>
-                  </Box>
-                }
-              />
+                  }
+                  secondary={
+                    <Box component="span" sx={favoriteDescription}>
+                      <Typography
+                        component="span"
+                        variant="body2"
+                        color="text.secondary"
+                        noWrap
+                      >
+                        {item.breed || item.type} • {item.age || "Unknown Age"}
+                      </Typography>
+                    </Box>
+                  }
+                />
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  ml: 1,
+                }}
+              >
+                <IconButton
+                  onClick={() => setSelectedItemForDrawer(item)}
+                  sx={{ p: 1, color: "grey.400" }}
+                >
+                  <AddCircleOutline />
+                </IconButton>
 
-              <ChevronRight sx={favoriteMoreInfo} />
+                <IconButton
+                  onClick={() => handleClickOpen(item)}
+                  sx={{ p: 1, color: "error.main" }}
+                >
+                  <DeleteOutline />
+                </IconButton>
+              </Box>
             </ListItem>
 
             {index < favorites.length - 1 && (
@@ -138,6 +166,14 @@ const Favorites = () => {
           </React.Fragment>
         ))}
       </List>
+
+      <DescriptionDrawer
+        open={Boolean(selectedItemForDrawer)}
+        onOpen={() => {}}
+        onClose={() => setSelectedItemForDrawer(null)}
+        item={selectedItemForDrawer}
+      />
+
       <DeleteConfirmDialog
         open={open}
         onClose={() => setOpen(false)}

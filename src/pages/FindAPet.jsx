@@ -8,13 +8,13 @@ import ActionButton from "../components/common/ActionButton";
 import { findAPetStyles } from "./FindAPet.styles";
 
 const FindAPet = () => {
-  const [pets, setPets] = useState([]);
+  const [items, setItems] = useState([]);
   const { swipeCardBox, buttonStack } = findAPetStyles;
 
   useEffect(() => {
     const query = '*[_type == "pet"]';
     client.fetch(query).then((data) => {
-      const formattedPets = data.map((p) => ({
+      const formattedItems = data.map((p) => ({
         id: p._id,
         type: p.type,
         name: p.name,
@@ -26,40 +26,44 @@ const FindAPet = () => {
         alt: p.image.alt,
         description: p.bio,
       }));
-      setPets(formattedPets);
+      setItems(formattedItems);
     });
   }, []);
 
   const handleAction = (action) => {
-    const currentPet = pets[0];
+    const currentItem = items[0];
 
     if (action === "like") {
-      saveToFavorites(currentPet);
+      saveToFavorites(currentItem);
     }
 
-    setPets((prev) => prev.slice(1));
+    setItems((prev) => prev.slice(1));
   };
 
-  const saveToFavorites = (pet) => {
+  const saveToFavorites = (item) => {
     const existingFavorites =
       JSON.parse(localStorage.getItem("paws_favorites")) || [];
 
-    const isAlreadySaved = existingFavorites.some((fav) => fav.id === pet.id);
+    const isAlreadySaved = existingFavorites.some((fav) => fav.id === item.id);
 
     if (!isAlreadySaved) {
-      const updatedFavorites = [pet, ...existingFavorites];
+      const updatedFavorites = [item, ...existingFavorites];
 
       localStorage.setItem("paws_favorites", JSON.stringify(updatedFavorites));
 
-      console.log(`${pet.name} saved to favorites! 🐾`);
+      console.log(`${item.name} saved to favorites! 🐾`);
     }
   };
 
   return (
     <>
       <Box sx={swipeCardBox}>
-        {pets.length > 0 ? (
-          <ContentCard key={pets[0].id} pet={pets[0]} onAction={handleAction} />
+        {items.length > 0 ? (
+          <ContentCard
+            key={items[0].id}
+            item={items[0]}
+            onAction={handleAction}
+          />
         ) : (
           <Typography variant="h6">You've seen all the pets! 🐶</Typography>
         )}
