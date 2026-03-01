@@ -22,3 +22,20 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Dependencies
+node_modules/
+.DS_Store
+
+# Build output
+dist/
+dist-ssr/
+*.local
+
+# Environment Variables (IMPORTANT: keep these secret)
+.env
+.env.local
+.env.development.local
+
+# Sanity specific
+.sanity/
