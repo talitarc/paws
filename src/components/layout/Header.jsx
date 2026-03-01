@@ -8,7 +8,7 @@ const Header = () => {
     <AppBar position="static" sx={appBar}>
       <Toolbar sx={toolbar}>
         <Box sx={logoBox} />
-        <img src="/logo.svg" alt="Paws logo" />
+        <img src={`${import.meta.env.BASE_URL}logo.svg`} alt="Paws logo" />
         <HeaderMenu />
       </Toolbar>
     </AppBar>
