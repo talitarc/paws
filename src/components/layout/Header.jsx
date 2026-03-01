@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { AppBar, Box, Toolbar, Typography } from "@mui/material";
+import { Link } from "react-router-dom";
+import { AppBar, Box, Button, Toolbar, Typography } from "@mui/material";
 import { client } from "../../sanityClient";
 import { headerStyles } from "./Header.styles";
 import HeaderMenu from "../common/HeaderMenu";
@@ -29,7 +30,9 @@ const Header = () => {
       <Toolbar sx={toolbar}>
         <Box sx={logoBox} />
         {logo?.url ? (
-          <img src={logo.url} alt={logo.alt || "Paws Logo"} />
+          <Button component={Link} to="/">
+            <img src={logo.url} alt={logo.alt || "Paws Logo"} />
+          </Button>
         ) : (
           <Typography variant="h1" color="#5F418D" fontWeight="bold">
             {logo?.siteName || "Paws"}
