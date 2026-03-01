@@ -1,5 +1,5 @@
 export const headerLinksStyles = {
-  color: "#5F418D",
+  color: "primary.main",
   paddingY: 0,
   justifyContent: "flex-end",
   textAlign: "right",

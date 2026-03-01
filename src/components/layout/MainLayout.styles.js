@@ -6,7 +6,7 @@ export const mainLayoutStyles = {
     alignItems: "center",
     justifyContent: "top",
     backgroundColor: "#E6E0E9",
-    minHeight: "98vh",
+    minHeight: "100dvh",
   },
   mainContentBox: {
     flex: 1,

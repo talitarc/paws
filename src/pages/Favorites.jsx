@@ -15,29 +15,43 @@ import {
 import { DeleteOutline, ChevronRight } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import DeleteConfirmDialog from "../components/common/DeleteConfirmDialog";
+import { favoritesStyles } from "./Favorites.styles";
 
 const Favorites = () => {
   const [favorites, setFavorites] = useState([]);
   const [open, setOpen] = useState(false);
-  const [selectedPet, setSelectedPet] = useState(null);
+  const [selectedItem, setSelectedItem] = useState(null);
+  const {
+    emptyListBox,
+    emptyListMessage,
+    findAnItemButton,
+    favoritesBox,
+    favoriteTitle,
+    favoritesList,
+    deleteFavorite,
+    favoriteAvatar,
+    favoriteName,
+    favoriteDescription,
+    favoriteMoreInfo,
+  } = favoritesStyles;
 
   useEffect(() => {
-    const savedPets = JSON.parse(localStorage.getItem("paws_favorites")) || [];
-    setFavorites(savedPets);
+    const savedItems = JSON.parse(localStorage.getItem("paws_favorites")) || [];
+    setFavorites(savedItems);
   }, []);
 
-  const handleClickOpen = (pet) => {
-    setSelectedPet(pet);
+  const handleClickOpen = (item) => {
+    setSelectedItem(item);
     setOpen(true);
   };
 
   const handleClose = () => {
     setOpen(false);
-    setSelectedPet(null);
+    setSelectedItem(null);
   };
 
   const handleConfirmDelete = () => {
-    const updated = favorites.filter((p) => p.id !== selectedPet.id);
+    const updated = favorites.filter((p) => p.id !== selectedItem.id);
     setFavorites(updated);
     localStorage.setItem("paws_favorites", JSON.stringify(updated));
     handleClose();
@@ -45,18 +59,18 @@ const Favorites = () => {
 
   if (favorites.length === 0) {
     return (
-      <Box sx={{ textAlign: "center", mt: 10, px: 2 }}>
+      <Box sx={emptyListBox}>
         <Typography variant="h4" gutterBottom>
           No favorites yet! 🐾
         </Typography>
-        <Typography variant="body1" sx={{ mb: 4, color: "text.secondary" }}>
+        <Typography variant="body1" sx={emptyListMessage}>
           Check Paws'list of furry friends.
         </Typography>
         <Button
           variant="contained"
           component={Link}
           to="/"
-          sx={{ bgcolor: "#5F418D", "&:hover": { bgcolor: "#5F418D" } }}
+          sx={findAnItemButton}
         >
           Find Paws
         </Button>
@@ -65,77 +79,57 @@ const Favorites = () => {
   }
 
   return (
-    <Container maxWidth="md" sx={{ py: 4 }}>
-      <Typography
-        variant="h5"
-        sx={{
-          mb: 3,
-          fontWeight: "bold",
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
+    <Container maxWidth="md" sx={favoritesBox}>
+      <Typography variant="h5" sx={favoriteTitle}>
         My Favorite Paws
       </Typography>
 
-      <List sx={{ bgcolor: "background.paper", borderRadius: 2, boxShadow: 1 }}>
-        {favorites.map((pet, index) => (
-          <React.Fragment key={pet.id}>
+      <List sx={favoritesList}>
+        {favorites.map((item, index) => (
+          <React.Fragment key={item.id}>
             <ListItem
               secondaryAction={
                 <IconButton
                   edge="end"
                   aria-label="delete"
-                  onClick={() => handleClickOpen(pet)}
+                  onClick={() => handleClickOpen(item)}
                 >
-                  <DeleteOutline sx={{ color: "#c14f5a" }} />
+                  <DeleteOutline sx={deleteFavorite} />
                 </IconButton>
               }
               sx={{ py: 2 }}
             >
               <ListItemAvatar>
-                <Avatar
-                  src={pet.image}
-                  alt={pet.name}
-                  sx={{
-                    width: 60,
-                    height: 60,
-                    mr: 2,
-                    border: "2px solid #5F418D",
-                  }}
-                />
+                <Avatar src={item.image} alt={item.name} sx={favoriteAvatar} />
               </ListItemAvatar>
 
               <ListItemText
                 primary={
-                  <Typography variant="h6" sx={{ fontWeight: "600" }}>
-                    {pet.name}
+                  <Typography variant="h6" sx={favoriteName}>
+                    {item.name}
                   </Typography>
                 }
                 secondary={
-                  <Box
-                    component="span"
-                    sx={{ display: "flex", flexDirection: "column" }}
-                  >
+                  <Box component="span" sx={favoriteDescription}>
                     <Typography
                       component="span"
                       variant="body2"
                       color="text.secondary"
                     >
-                      {pet.breed || pet.type} • {pet.age || "Unknown Age"}
+                      {item.breed || item.type} • {item.age || "Unknown Age"}
                     </Typography>
                     <Typography
                       component="span"
                       variant="body2"
                       color="text.secondary"
                     >
-                      {pet.location}
+                      {item.location}
                     </Typography>
                   </Box>
                 }
               />
 
-              <ChevronRight sx={{ color: "#ccc", ml: 2 }} />
+              <ChevronRight sx={favoriteMoreInfo} />
             </ListItem>
 
             {index < favorites.length - 1 && (
@@ -148,7 +142,7 @@ const Favorites = () => {
         open={open}
         onClose={() => setOpen(false)}
         onConfirm={handleConfirmDelete}
-        name={selectedPet?.name}
+        name={selectedItem?.name}
       />
     </Container>
   );

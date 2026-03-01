@@ -34,7 +34,7 @@ const Header = () => {
             <img src={logo.url} alt={logo.alt || "Paws Logo"} />
           </Button>
         ) : (
-          <Typography variant="h1" color="#5F418D" fontWeight="bold">
+          <Typography variant="h1" color="main" fontWeight="bold">
             {logo?.siteName || "Paws"}
           </Typography>
         )}

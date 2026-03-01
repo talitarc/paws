@@ -9,7 +9,7 @@ export const footerStyles = {
     right: 0,
     width: "100%",
     boxSizing: "borderBox",
-    backgroundColor: "#5F418D",
+    backgroundColor: "primary.main",
     borderTop: "1px solid #ddd",
     py: 4,
     textAlign: "center",
