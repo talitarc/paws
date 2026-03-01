@@ -7,7 +7,7 @@ import { headerMenuStyles } from "./HeaderMenu.styles";
 import HeaderLinks from "./HeaderLinks";
 
 const HeaderMenu = () => {
-  const { mobileMenu, desktopMenu, menuBackdrop, menuPaper } = headerMenuStyles;
+  const { platform, menu } = headerMenuStyles;
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
@@ -28,7 +28,7 @@ const HeaderMenu = () => {
         edge="end"
         color="black"
         aria-label="menu"
-        sx={mobileMenu}
+        sx={platform.mobileContainer}
         onClick={handleClick}
       >
         {open ? <CloseIcon /> : <MenuIcon />}
@@ -42,23 +42,26 @@ const HeaderMenu = () => {
               "aria-labelledby": "basic-button",
             },
             backdrop: {
-              sx: menuBackdrop,
+              sx: menu.backdrop,
             },
             paper: {
-              sx: menuPaper,
+              sx: menu.paper,
             },
           }}
         >
           <MenuItem onClick={handleClose} component={Link} to="/">
             Home
           </MenuItem>
-          <MenuItem onClick={handleClose}>Find a pet</MenuItem>
+          <MenuItem onClick={handleClose} component={Link} to="/">
+            Find a pet
+          </MenuItem>
           <MenuItem onClick={handleClose} component={Link} to="/favorites">
             Favorites
           </MenuItem>
         </Menu>
       </IconButton>
-      <Box sx={desktopMenu} component="nav">
+
+      <Box sx={platform.desktopContainer} component="nav">
         <HeaderLinks title="Home" path="/home" />
         <HeaderLinks title="Favorites" path="/favorites" />
       </Box>

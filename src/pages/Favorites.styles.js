@@ -1,31 +1,64 @@
 export const favoritesStyles = {
-  emptyListBox: { textAlign: "center", mt: 10, px: 2 },
-  emptyListMessage: { mb: 4, color: "text.secondary" },
-  findAnItemButton: {
-    backgroundColor: "primary.main",
-    "&:hover": { backgroundColor: "primary.main" },
+  emptyState: {
+    container: { textAlign: "center", marginTop: 10, paddingX: 2 },
+    message: { marginBottom: 4, color: "text.secondary" },
+    actionButton: {
+      backgroundColor: "primary.main",
+      "&:hover": { backgroundColor: "primary.main" },
+    },
   },
-  favoritesBox: { py: 4 },
-  favoriteTitle: {
-    mb: 3,
-    fontWeight: "bold",
-    display: "flex",
-    justifyContent: "center",
+
+  layout: {
+    container: { paddingY: 4 },
+    title: {
+      marginBottom: 3,
+      fontWeight: "bold",
+      display: "flex",
+      justifyContent: "center",
+    },
+    headerActions: {
+      display: "flex",
+      justifyContent: "flex-end",
+      marginBottom: 2,
+    },
   },
-  favoritesList: {
-    backgroundColor: "background.paper",
-    borderRadius: 2,
-    boxShadow: 1,
+
+  list: {
+    container: {
+      backgroundColor: "background.paper",
+      borderRadius: 2,
+      boxShadow: 1,
+    },
   },
-  deleteFavorite: { color: "action.main" },
-  favoriteAvatar: {
-    width: 60,
-    height: 60,
-    mr: 2,
-    border: "2px solid",
-    borderColor: "primary.main",
+
+  item: {
+    root: {
+      paddingY: 2,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+    },
+    content: {
+      display: "flex",
+      alignItems: "center",
+      flexGrow: 1,
+      minWidth: 0,
+    },
+    avatar: {
+      width: 60,
+      height: 60,
+      marginRight: 2,
+      border: "2px solid",
+      borderColor: "primary.main",
+    },
+    name: { fontWeight: "600" },
+    description: { display: "flex", flexDirection: "column" },
+    buttonGroup: {
+      display: "flex",
+      alignItems: "center",
+      marginLeft: 1,
+    },
+    moreInfoIcon: { color: "grey.400", marginLeft: 2, padding: 1 },
+    deleteIcon: { color: "action.main", padding: 1 },
   },
-  favoriteName: { fontWeight: "600" },
-  favoriteDescription: { display: "flex", flexDirection: "column" },
-  favoriteMoreInfo: { color: "#ccc", ml: 2 },
 };

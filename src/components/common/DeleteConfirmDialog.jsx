@@ -2,21 +2,20 @@ import { Dialog, DialogTitle, DialogActions, Button } from "@mui/material";
 import { deleteConfirmDialog } from "./DeleteConfirmDialog.styles";
 
 const DeleteConfirmDialog = ({ open, onClose, onConfirm, name }) => {
-  const { dialogBox, dialogMessage, dialogButtonsBox, removeButton } =
-    deleteConfirmDialog;
+  const { root, body, actions } = deleteConfirmDialog;
   return (
     <Dialog
       open={open}
       onClose={onClose}
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
-      sx={dialogBox}
+      sx={root}
     >
-      <DialogTitle id="alert-dialog-title" sx={dialogMessage}>
+      <DialogTitle id="alert-dialog-title" sx={body.message}>
         Are you sure you want to remove <strong>{name}</strong> from your list?
       </DialogTitle>
 
-      <DialogActions sx={dialogButtonsBox}>
+      <DialogActions sx={actions.buttonGroup}>
         <Button onClick={onClose} color="inherit">
           Cancel
         </Button>
@@ -24,7 +23,7 @@ const DeleteConfirmDialog = ({ open, onClose, onConfirm, name }) => {
           onClick={onConfirm}
           autoFocus
           variant="contained"
-          sx={removeButton}
+          sx={actions.removeButton}
         >
           Remove
         </Button>

@@ -6,7 +6,7 @@ import { headerStyles } from "./Header.styles";
 import HeaderMenu from "../common/HeaderMenu";
 
 const Header = () => {
-  const { appBar, toolbar, logoBox } = headerStyles;
+  const { layout, brand } = headerStyles;
   const [logo, setLogo] = useState(null);
   const LOGO_QUERY = `*[_type == "brandAssets"][0]{
     "url": image.asset->url,
@@ -26,9 +26,10 @@ const Header = () => {
   }, []);
 
   return (
-    <AppBar position="static" sx={appBar}>
-      <Toolbar sx={toolbar}>
-        <Box sx={logoBox} />
+    <AppBar position="static" sx={layout.appBar}>
+      <Toolbar sx={layout.toolbar}>
+        <Box sx={brand.logoBox} />
+
         {logo?.url ? (
           <Button component={Link} to="/">
             <img src={logo.url} alt={logo.alt || "Paws Logo"} />
@@ -38,6 +39,7 @@ const Header = () => {
             {logo?.siteName || "Paws"}
           </Typography>
         )}
+
         <HeaderMenu />
       </Toolbar>
     </AppBar>

@@ -6,8 +6,8 @@ const theme = createTheme({
       main: "#5F418D",
     },
     action: {
-      main: "#f44336",
-      secondary: "#4caf50",
+      main: "#C14F5A",
+      secondary: "#169453",
     },
   },
   typography: {

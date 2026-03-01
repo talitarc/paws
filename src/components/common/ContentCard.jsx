@@ -17,13 +17,7 @@ import DescriptionDrawer from "./DescriptionDrawer";
 import { contentCardStyles } from "./ContentCard.styles";
 
 const ContentCard = ({ item, onAction }) => {
-  const {
-    cardBox,
-    cardContentBox,
-    cardContentDescription,
-    contentArrowButton,
-    moreInfoButton,
-  } = contentCardStyles;
+  const { container, navigation, body, actions } = contentCardStyles;
   const { name, sex, breed, age, image, alt, location, type, description } =
     item;
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -58,12 +52,13 @@ const ContentCard = ({ item, onAction }) => {
         <>
           <Button
             onClick={() => onAction("goLeft")}
-            sx={contentArrowButton}
+            sx={navigation.arrowButton}
             aria-label="Go to previous pet"
           >
             <KeyboardArrowLeftIcon />
           </Button>
-          <Card sx={cardBox}>
+
+          <Card sx={container}>
             <CardMedia
               component="img"
               sx={{
@@ -76,7 +71,8 @@ const ContentCard = ({ item, onAction }) => {
               image={image}
               alt={alt ? alt : name}
             />
-            <CardContent sx={cardContentBox}>
+
+            <CardContent sx={body.contentBox}>
               <Box
                 sx={{
                   display: "flex",
@@ -97,34 +93,41 @@ const ContentCard = ({ item, onAction }) => {
                     {location}
                   </Typography>
                 </Box>
+
                 <Button
                   variant="contained"
                   onClick={() => onAction("like")}
                   sx={{
                     display: { xs: "none", md: "flex" },
-                    backgroundColor: "#169453",
+                    backgroundColor: "action.secondary",
                   }}
                 >
                   Add to favorites
                 </Button>
               </Box>
+
               <Typography
                 variant="body1"
                 color="text.secondary"
-                sx={cardContentDescription}
+                sx={body.description}
               >
                 {description}
               </Typography>
             </CardContent>
           </Card>
+
           <Button
             onClick={() => onAction("goRight")}
-            sx={contentArrowButton}
+            sx={navigation.arrowButton}
             aria-label="Go to the next pet"
           >
             <KeyboardArrowRightIcon />
           </Button>
-          <IconButton onClick={() => setIsDrawerOpen(true)} sx={moreInfoButton}>
+
+          <IconButton
+            onClick={() => setIsDrawerOpen(true)}
+            sx={actions.moreInfoButton}
+          >
             <InfoIcon color="text.secondary" />
           </IconButton>
 

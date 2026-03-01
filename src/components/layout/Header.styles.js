@@ -1,14 +1,20 @@
 export const headerStyles = {
-  appBar: {
-    backgroundColor: "#FEFCF6",
-    boxShadow: "none",
-    borderBottomLeftRadius: "12px",
-    borderBottomRightRadius: "12px",
+  layout: {
+    appBar: {
+      backgroundColor: "#FEFCF6",
+      boxShadow: "none",
+      borderBottomLeftRadius: "12px",
+      borderBottomRightRadius: "12px",
+    },
+    toolbar: {
+      justifyContent: "space-between",
+      alignItems: "center",
+      padding: "16px 8px",
+    },
   },
-  toolbar: {
-    justifyContent: "space-between",
-    alignItems: "center",
-    padding: "16px 8px",
+  brand: {
+    logoBox: {
+      width: { xs: 48, sm: 77 },
+    },
   },
-  logoBox: { width: { xs: 48, sm: 77 } },
 };

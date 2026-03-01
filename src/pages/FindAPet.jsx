@@ -9,8 +9,7 @@ import { findAPetStyles } from "./FindAPet.styles";
 
 const FindAPet = () => {
   const [items, setItems] = useState([]);
-  const { swipeCardBox, buttonStack } = findAPetStyles;
-
+  const { layout, controls } = findAPetStyles;
   useEffect(() => {
     const query = '*[_type == "pet"]';
     client.fetch(query).then((data) => {
@@ -57,7 +56,7 @@ const FindAPet = () => {
 
   return (
     <>
-      <Box sx={swipeCardBox}>
+      <Box sx={layout.swipeArea}>
         {items.length > 0 ? (
           <ContentCard
             key={items[0].id}
@@ -72,7 +71,7 @@ const FindAPet = () => {
       <Stack
         direction="row"
         spacing={10}
-        sx={buttonStack}
+        sx={controls.buttonStack}
         bgcolor="#FEF7FF"
         width="100%"
         justifyContent="center"
@@ -81,13 +80,13 @@ const FindAPet = () => {
         <ActionButton
           ariaLabel="Pass this pet"
           icon={<Cancel sx={{ fontSize: 60 }} />}
-          color="#C14F5A"
+          color="action.main"
           onClick={() => handleAction("goLeft")}
         />
         <ActionButton
           ariaLabel="Like this pet"
           icon={<FavoriteBorder sx={{ fontSize: 60 }} />}
-          color="#169453"
+          color="action.secondary"
           onClick={() => handleAction("like")}
         />
       </Stack>

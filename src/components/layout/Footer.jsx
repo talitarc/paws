@@ -2,14 +2,14 @@ import { Box, ButtonGroup, Button } from "@mui/material";
 import { footerStyles } from "./Footer.styles";
 
 const Footer = () => {
-  const { footerContainer, footerLinksGroup } = footerStyles;
+  const { layout, navigation } = footerStyles;
   return (
     <Box
       component="footer"
-      sx={footerContainer}
+      sx={layout.container}
       aria-label="Links in the bottom of the webpage"
     >
-      <ButtonGroup variant="text" color="white" sx={footerLinksGroup}>
+      <ButtonGroup variant="text" color="white" sx={navigation.buttonGroup}>
         <Button url="/faq" aria-label="FAQ">
           FAQ
         </Button>

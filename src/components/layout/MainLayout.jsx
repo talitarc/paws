@@ -4,13 +4,15 @@ import Footer from "./Footer";
 import { mainLayoutStyles } from "./MainLayout.styles";
 
 const MainLayout = ({ children }) => {
-  const { mainLayoutBox, mainContentBox } = mainLayoutStyles;
+  const { structure } = mainLayoutStyles;
   return (
-    <Box sx={mainLayoutBox}>
+    <Box sx={structure.root}>
       <Header />
-      <Box component="main" sx={mainContentBox}>
+
+      <Box component="main" sx={structure.content}>
         {children}
       </Box>
+
       <Footer />
     </Box>
   );

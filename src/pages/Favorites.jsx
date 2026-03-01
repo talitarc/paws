@@ -11,34 +11,19 @@ import {
   IconButton,
   Box,
   Button,
-  Stack,
 } from "@mui/material";
 import { DeleteOutline, AddCircleOutline } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import DeleteConfirmDialog from "../components/common/DeleteConfirmDialog";
 import DescriptionDrawer from "../components/common/DescriptionDrawer";
 import { favoritesStyles } from "./Favorites.styles";
-import { contentCardStyles } from "../components/common/ContentCard.styles";
 
 const Favorites = () => {
   const [favorites, setFavorites] = useState([]);
   const [open, setOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [selectedItemForDrawer, setSelectedItemForDrawer] = useState(null);
-  const {
-    emptyListBox,
-    emptyListMessage,
-    findAnItemButton,
-    favoritesBox,
-    favoriteTitle,
-    favoritesList,
-    deleteFavorite,
-    favoriteAvatar,
-    favoriteName,
-    favoriteDescription,
-    favoriteMoreInfo,
-  } = favoritesStyles;
-  const { moreInfoButton } = contentCardStyles;
+  const { emptyState, layout, list, item } = favoritesStyles;
 
   useEffect(() => {
     const savedItems = JSON.parse(localStorage.getItem("paws_favorites")) || [];
@@ -64,18 +49,18 @@ const Favorites = () => {
 
   if (favorites.length === 0) {
     return (
-      <Box sx={emptyListBox}>
+      <Box sx={emptyState.container}>
         <Typography variant="h4" gutterBottom>
           No favorites yet! 🐾
         </Typography>
-        <Typography variant="body1" sx={emptyListMessage}>
-          Check Paws'list of furry friends.
+        <Typography variant="body1" sx={emptyState.message}>
+          Check Paws' list of furry friends.
         </Typography>
         <Button
           variant="contained"
           component={Link}
           to="/"
-          sx={findAnItemButton}
+          sx={emptyState.actionButton}
         >
           Find Paws
         </Button>
@@ -84,76 +69,52 @@ const Favorites = () => {
   }
 
   return (
-    <Container maxWidth="md" sx={favoritesBox}>
-      <Typography variant="h5" sx={favoriteTitle}>
+    <Container maxWidth="md" sx={layout.container}>
+      <Typography variant="h5" sx={layout.title}>
         My Favorite Paws
       </Typography>
 
-      <List sx={favoritesList}>
-        {favorites.map((item, index) => (
-          <React.Fragment key={item.id}>
-            <ListItem
-              secondaryAction={null}
-              sx={{
-                py: 2,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-              }}
-            >
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  flexGrow: 1,
-                  minWidth: 0,
-                }}
-              >
+      <List sx={list.container}>
+        {favorites.map((pet, index) => (
+          <React.Fragment key={pet.id}>
+            <ListItem secondaryAction={null} sx={item.root}>
+              <Box sx={item.content}>
                 <ListItemAvatar>
-                  <Avatar
-                    src={item.image}
-                    alt={item.name}
-                    sx={favoriteAvatar}
-                  />
+                  <Avatar src={pet.image} alt={pet.name} sx={item.avatar} />
                 </ListItemAvatar>
 
                 <ListItemText
                   primary={
-                    <Typography variant="h6" sx={favoriteName} noWrap>
-                      {item.name}
+                    <Typography variant="h6" sx={item.name} noWrap>
+                      {pet.name}
                     </Typography>
                   }
                   secondary={
-                    <Box component="span" sx={favoriteDescription}>
+                    <Box component="span" sx={item.description}>
                       <Typography
                         component="span"
                         variant="body2"
                         color="text.secondary"
                         noWrap
                       >
-                        {item.breed || item.type} • {item.age || "Unknown Age"}
+                        {pet.breed || pet.type} • {pet.age || "Unknown Age"}
                       </Typography>
                     </Box>
                   }
                 />
               </Box>
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  ml: 1,
-                }}
-              >
+
+              <Box sx={item.buttonGroup}>
                 <IconButton
-                  onClick={() => setSelectedItemForDrawer(item)}
-                  sx={{ p: 1, color: "grey.400" }}
+                  onClick={() => setSelectedItemForDrawer(pet)}
+                  sx={item.moreInfoIcon}
                 >
                   <AddCircleOutline />
                 </IconButton>
 
                 <IconButton
-                  onClick={() => handleClickOpen(item)}
-                  sx={{ p: 1, color: "error.main" }}
+                  onClick={() => handleClickOpen(pet)}
+                  sx={item.deleteIcon}
                 >
                   <DeleteOutline />
                 </IconButton>

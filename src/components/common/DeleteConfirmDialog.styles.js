@@ -1,18 +1,27 @@
 export const deleteConfirmDialog = {
-  dialogBox: {
+  root: {
     "& .MuiDialog-paper": {
       width: "80%",
       borderRadius: "8px",
     },
   },
-  dialogMessage: { textAlign: "center", fontWeight: "bold" },
-  dialogButtonsBox: {
-    pb: 2,
-    px: 3,
-    justifyContent: "center",
+
+  body: {
+    message: {
+      textAlign: "center",
+      fontWeight: "bold",
+    },
   },
-  removeButton: {
-    backgroundColor: "#c14f5a",
-    "&:hover": { backgroundColor: "#c14f5a" },
+
+  actions: {
+    buttonGroup: {
+      paddingBottom: 2,
+      paddingX: 3,
+      justifyContent: "center",
+    },
+    removeButton: {
+      backgroundColor: "action.main",
+      "&:hover": { backgroundColor: "action.main" },
+    },
   },
 };
