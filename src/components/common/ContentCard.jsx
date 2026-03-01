@@ -61,7 +61,7 @@ const ContentCard = ({ pet, onAction }) => {
             <CardMedia
               component="img"
               sx={{
-                maxWidth: 380,
+                maxWidth: "50vh",
                 maxHeight: "30vh",
                 display: "flex",
                 justifyContent: "center",

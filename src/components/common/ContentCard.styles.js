@@ -4,7 +4,7 @@ export const contentCardStyles = {
     paddingY: "20px",
     flexDirection: { xs: "column", sm: "row" },
     width: { xs: 340, sm: "100%" },
-    maxHeight: { xs: 360 },
+    maxHeight: { md: "50vh" },
     border: "10px solid white",
     boxShadow: "0 20px 40px rgba(0,0,0,0.15)",
   },
