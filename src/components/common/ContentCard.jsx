@@ -97,6 +97,7 @@ const ContentCard = ({ item, onAction }) => {
                 <Button
                   variant="contained"
                   onClick={() => onAction("like")}
+                  aria-label="Add to Favorites List"
                   sx={{
                     display: { xs: "none", md: "flex" },
                     backgroundColor: "action.secondary",
@@ -126,6 +127,7 @@ const ContentCard = ({ item, onAction }) => {
 
           <IconButton
             onClick={() => setIsDrawerOpen(true)}
+            aria-label="Open a longer description"
             sx={actions.moreInfoButton}
           >
             <InfoIcon color="text.secondary" />

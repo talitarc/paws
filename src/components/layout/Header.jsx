@@ -31,7 +31,7 @@ const Header = () => {
         <Box sx={brand.logoBox} />
 
         {logo?.url ? (
-          <Button component={Link} to="/">
+          <Button component={Link} to="/" aria-label="Go to homepage">
             <img src={logo.url} alt={logo.alt || "Paws Logo"} />
           </Button>
         ) : (

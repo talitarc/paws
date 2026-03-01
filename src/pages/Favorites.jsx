@@ -60,6 +60,7 @@ const Favorites = () => {
           variant="contained"
           component={Link}
           to="/"
+          aria-label="Go to homepage"
           sx={emptyState.actionButton}
         >
           Find Paws
@@ -107,6 +108,7 @@ const Favorites = () => {
               <Box sx={item.buttonGroup}>
                 <IconButton
                   onClick={() => setSelectedItemForDrawer(pet)}
+                  aria-label="Open a longer description"
                   sx={item.moreInfoIcon}
                 >
                   <AddCircleOutline />
@@ -114,6 +116,7 @@ const Favorites = () => {
 
                 <IconButton
                   onClick={() => handleClickOpen(pet)}
+                  aria-label="Remove item from your favorites list"
                   sx={item.deleteIcon}
                 >
                   <DeleteOutline />

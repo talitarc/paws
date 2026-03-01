@@ -44,7 +44,11 @@ const DescriptionDrawer = ({ open, onOpen, onClose, item }) => {
             {breed || type}
           </Typography>
         </Box>
-        <IconButton onClick={onClose} sx={header.closeButton}>
+        <IconButton
+          onClick={onClose}
+          aria-label="Close the drawer"
+          sx={header.closeButton}
+        >
           <Close fontSize="small" />
         </IconButton>
       </Stack>
