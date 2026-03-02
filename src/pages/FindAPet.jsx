@@ -1,36 +1,33 @@
-import { Box, Stack, Typography, Skeleton } from "@mui/material";
+import { Box, Stack, Typography, Skeleton, Alert } from "@mui/material";
 import Cancel from "@mui/icons-material/Close";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import ContentCard from "../components/common/ContentCard";
 import ActionButton from "../components/common/ActionButton";
 import { findAPetStyles } from "./FindAPet.styles";
 import { usePets } from "../hooks/usePets";
+import { useFavorites } from "../hooks/useFavorites";
 
 const FindAPet = () => {
   const { layout, skeleton, controls } = findAPetStyles;
-  const { currentItem, loading, nextCard } = usePets();
+  const { currentItem, loading, error, nextCard } = usePets();
+  const { save } = useFavorites();
 
   const handleAction = (action) => {
     if (action === "like") {
-      saveToFavorites(currentItem);
+      save(currentItem);
     }
     nextCard();
   };
 
-  const saveToFavorites = (item) => {
-    const existingFavorites =
-      JSON.parse(localStorage.getItem("paws_favorites")) || [];
-
-    const isAlreadySaved = existingFavorites.some((fav) => fav.id === item.id);
-
-    if (!isAlreadySaved) {
-      const updatedFavorites = [item, ...existingFavorites];
-
-      localStorage.setItem("paws_favorites", JSON.stringify(updatedFavorites));
-    }
-  };
-
   if (loading) return <Skeleton variant="rectangular" sx={skeleton} />;
+
+  if (error) {
+    return (
+      <Alert severity="error" sx={{ m: 2 }}>
+        {error}
+      </Alert>
+    );
+  }
 
   return (
     <>
