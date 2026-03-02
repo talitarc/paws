@@ -84,10 +84,10 @@ const ContentCard = ({ item, onAction }) => {
                 <Button
                   variant="contained"
                   onClick={() => onAction("like")}
-                  aria-label="Add to Favorites List"
+                  aria-label="Add to Favourites List"
                   sx={actions.desktopButton}
                 >
-                  Add to favorites
+                  Add to favourites
                 </Button>
               </Box>
 

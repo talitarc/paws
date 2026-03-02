@@ -6,7 +6,7 @@ import theme from "./theme";
 import MainLayout from "./components/layout/MainLayout";
 
 const FindAPet = lazy(() => import("./pages/FindAPet"));
-const Favorites = lazy(() => import("./pages/Favorites"));
+const Favourites = lazy(() => import("./pages/Favourites"));
 
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
         <MainLayout>
           <Routes>
             <Route path="/" element={<FindAPet />} />
-            <Route path="/favorites" element={<Favorites />} />
+            <Route path="/favourites" element={<Favourites />} />
           </Routes>
         </MainLayout>
       </Suspense>

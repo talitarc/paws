@@ -14,17 +14,17 @@ import {
 } from "@mui/material";
 import { DeleteOutline, AddCircleOutline } from "@mui/icons-material";
 import { Link } from "react-router-dom";
-import { useFavorites } from "../hooks/useFavorites";
+import { useFavourites } from "../hooks/useFavourites";
 import DeleteConfirmDialog from "../components/common/DeleteConfirmDialog";
 import DescriptionDrawer from "../components/common/DescriptionDrawer";
-import { favoritesStyles } from "./Favorites.styles";
+import { favouritesStyles } from "./Favourites.styles";
 
-const Favorites = () => {
+const Favourites = () => {
   const [open, setOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [selectedItemForDrawer, setSelectedItemForDrawer] = useState(null);
-  const { favorites, remove } = useFavorites();
-  const { emptyState, layout, list, item } = favoritesStyles;
+  const { favourites, remove } = useFavourites();
+  const { emptyState, layout, list, item } = favouritesStyles;
 
   const handleClickOpen = (item) => {
     setSelectedItem(item);
@@ -43,11 +43,11 @@ const Favorites = () => {
     }
   };
 
-  if (favorites.length === 0) {
+  if (favourites.length === 0) {
     return (
       <Box sx={emptyState.container}>
         <Typography variant="h4" gutterBottom>
-          No favorites yet! 🐾
+          No favourites yet! 🐾
         </Typography>
         <Typography variant="body1" sx={emptyState.message}>
           Check Paws' list of furry friends.
@@ -68,11 +68,11 @@ const Favorites = () => {
   return (
     <Container maxWidth="md" sx={layout.container}>
       <Typography variant="h5" sx={layout.title}>
-        My Favorite Paws
+        My Favourite Paws
       </Typography>
 
       <List sx={list.container}>
-        {favorites.map((pet, index) => (
+        {favourites.map((pet, index) => (
           <React.Fragment key={pet.id}>
             <ListItem secondaryAction={null} sx={item.root}>
               <Box sx={item.content}>
@@ -112,7 +112,7 @@ const Favorites = () => {
 
                 <IconButton
                   onClick={() => handleClickOpen(pet)}
-                  aria-label="Remove item from your favorites list"
+                  aria-label="Remove item from your favourites list"
                   sx={item.deleteIcon}
                 >
                   <DeleteOutline />
@@ -120,7 +120,7 @@ const Favorites = () => {
               </Box>
             </ListItem>
 
-            {index < favorites.length - 1 && (
+            {index < favourites.length - 1 && (
               <Divider variant="middle" component="li" />
             )}
           </React.Fragment>
@@ -144,4 +144,4 @@ const Favorites = () => {
   );
 };
 
-export default Favorites;
+export default Favourites;

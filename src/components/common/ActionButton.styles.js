@@ -6,7 +6,7 @@ export const buttonStyles = {
     color: "#f44336",
     "&:hover": { backgroundColor: "#f44336", color: "white" },
   },
-  favorite: {
+  favourite: {
     width: 60,
     height: 60,
     border: "2px solid #4caf50",

@@ -19,14 +19,14 @@ const DeleteConfirmDialog = ({ open, onClose, onConfirm, name }) => {
       <DialogActions sx={actions.buttonGroup}>
         <Button
           onClick={onClose}
-          aria-label="Cancel action and keep item in the favorites list"
+          aria-label="Cancel action and keep item in the favourites list"
           color="inherit"
         >
           Cancel
         </Button>
         <Button
           onClick={onConfirm}
-          aria-label="Confirm action and remove item from the favorites list"
+          aria-label="Confirm action and remove item from the favourites list"
           autoFocus
           variant="contained"
           sx={actions.removeButton}

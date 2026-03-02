@@ -5,12 +5,12 @@ import ContentCard from "../components/common/ContentCard";
 import ActionButton from "../components/common/ActionButton";
 import { findAPetStyles } from "./FindAPet.styles";
 import { usePets } from "../hooks/usePets";
-import { useFavorites } from "../hooks/useFavorites";
+import { useFavourites } from "../hooks/useFavourites";
 
 const FindAPet = () => {
   const { layout, skeleton, controls } = findAPetStyles;
   const { currentItem, loading, error, nextCard } = usePets();
-  const { save } = useFavorites();
+  const { save } = useFavourites();
 
   const handleAction = (action) => {
     if (action === "like") {

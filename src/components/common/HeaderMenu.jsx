@@ -55,15 +55,15 @@ const HeaderMenu = () => {
           <MenuItem onClick={handleClose} component={Link} to="/">
             Find a pet
           </MenuItem>
-          <MenuItem onClick={handleClose} component={Link} to="/favorites">
-            Favorites
+          <MenuItem onClick={handleClose} component={Link} to="/favourites">
+            Favourites
           </MenuItem>
         </Menu>
       </IconButton>
 
       <Box sx={platform.desktopContainer} component="nav">
         <HeaderLinks title="Home" path="/" />
-        <HeaderLinks title="Favorites" path="/favorites" />
+        <HeaderLinks title="Favourites" path="/favourites" />
       </Box>
     </>
   );

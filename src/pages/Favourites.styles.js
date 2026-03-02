@@ -1,4 +1,4 @@
-export const favoritesStyles = {
+export const favouritesStyles = {
   emptyState: {
     container: { textAlign: "center", marginTop: 10, paddingX: 2 },
     message: { marginBottom: 4, color: "text.secondary" },

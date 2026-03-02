@@ -1,17 +1,17 @@
 import { useState, useEffect } from "react";
 
-const STORAGE_KEY = "paws_favorites";
+const STORAGE_KEY = "paws_favourites";
 
-export function useFavorites() {
-  const [favorites, setFavorites] = useState([]);
+export function useFavourites() {
+  const [favourites, setFavourites] = useState([]);
 
   useEffect(() => {
     const stored = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-    setFavorites(stored);
+    setFavourites(stored);
   }, []);
 
   const save = (item) => {
-    setFavorites((prev) => {
+    setFavourites((prev) => {
       if (prev.some((f) => f.id === item.id)) return prev;
       const updated = [item, ...prev];
       localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
@@ -20,10 +20,10 @@ export function useFavorites() {
   };
 
   const remove = (id) => {
-    const updated = favorites.filter((p) => p.id !== id);
-    setFavorites(updated);
+    const updated = favourites.filter((p) => p.id !== id);
+    setFavourites(updated);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
   };
 
-  return { favorites, save, remove };
+  return { favourites, save, remove };
 }
