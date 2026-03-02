@@ -1,6 +1,7 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import visualizer from "rollup-plugin-visualizer";
+import path from "path";
 
 export default defineConfig({
   base: "/paws",
@@ -8,7 +9,7 @@ export default defineConfig({
     react(),
     visualizer({
       open: true,
-      filename: "stats.html",
+      filename: path.resolve(__dirname, "stats.html"),
       template: "treemap",
       gzipSize: true,
       brotliSize: true,
