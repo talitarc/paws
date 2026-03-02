@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import {
   Box,
   Typography,
@@ -69,6 +70,20 @@ const DescriptionDrawer = ({ open, onOpen, onClose, item }) => {
       </Typography>
     </SwipeableDrawer>
   );
+};
+
+DescriptionDrawer.propTypes = {
+  open: PropTypes.bool,
+  onOpen: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
+  item: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    breed: PropTypes.string,
+    type: PropTypes.string.isRequired,
+    age: PropTypes.string.isRequired,
+    location: PropTypes.string,
+    description: PropTypes.string,
+  }),
 };
 
 export default DescriptionDrawer;

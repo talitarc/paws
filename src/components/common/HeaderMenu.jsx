@@ -62,11 +62,13 @@ const HeaderMenu = () => {
       </IconButton>
 
       <Box sx={platform.desktopContainer} component="nav">
-        <HeaderLinks title="Home" path="/home" />
+        <HeaderLinks title="Home" path="/" />
         <HeaderLinks title="Favorites" path="/favorites" />
       </Box>
     </>
   );
 };
+
+HeaderMenu.propTypes = {};
 
 export default HeaderMenu;

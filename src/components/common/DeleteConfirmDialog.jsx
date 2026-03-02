@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { Dialog, DialogTitle, DialogActions, Button } from "@mui/material";
 import { deleteConfirmDialog } from "./DeleteConfirmDialog.styles";
 
@@ -35,6 +36,13 @@ const DeleteConfirmDialog = ({ open, onClose, onConfirm, name }) => {
       </DialogActions>
     </Dialog>
   );
+};
+
+DeleteConfirmDialog.propTypes = {
+  open: PropTypes.bool,
+  onConfirm: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
 };
 
 export default DeleteConfirmDialog;

@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { Box } from "@mui/material";
 import Header from "./Header";
 import Footer from "./Footer";
@@ -16,6 +17,10 @@ const MainLayout = ({ children }) => {
       <Footer />
     </Box>
   );
+};
+
+MainLayout.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export default MainLayout;

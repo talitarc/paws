@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import {
   Button,
@@ -133,6 +134,21 @@ const ContentCard = ({ item, onAction }) => {
       )}
     </motion.div>
   );
+};
+
+ContentCard.propTypes = {
+  item: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    breed: PropTypes.string,
+    sex: PropTypes.string.isRequired,
+    age: PropTypes.string.isRequired,
+    location: PropTypes.string,
+    image: PropTypes.string.isRequired,
+    alt: PropTypes.string,
+    description: PropTypes.string,
+  }).isRequired,
+  onAction: PropTypes.func.isRequired,
 };
 
 export default ContentCard;

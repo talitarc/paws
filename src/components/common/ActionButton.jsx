@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { IconButton } from "@mui/material";
 
 const ActionButton = ({ icon, color, onClick, ariaLabel }) => {
@@ -23,6 +24,13 @@ const ActionButton = ({ icon, color, onClick, ariaLabel }) => {
       {icon}
     </IconButton>
   );
+};
+
+ActionButton.propTypes = {
+  icon: PropTypes.element.isRequired,
+  color: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+  ariaLabel: PropTypes.string.isRequired,
 };
 
 export default ActionButton;
