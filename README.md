@@ -54,9 +54,9 @@ Check the live application on: [https://talitarc.github.io/paws](https://talitar
 
 ## 🧠 Challenges
 
-    - Deployment: paws-cms was inside paws and it caused a major conflict when deploying the application to GitHub Pages. After trying a couple of solutions, paws-cms was moved out of the paws project and now lives in its own repo.
+- Deployment: paws-cms was inside paws and it caused a major conflict when deploying the application to GitHub Pages. After trying a couple of solutions, paws-cms was moved out of the paws project and now lives in its own repo.
 
-    - Lighthouse: Lighthouse is indicating some performance issues (87 rating at this point). Some changes were made to address them (eg, lazy loading, fonts preconnection), but there are still some actions to take (eg, image sizing, review MUI imports)
+- Lighthouse: Lighthouse is indicating some performance issues (87 rating at this point). Some changes were made to address them (eg, lazy loading, fonts preconnection), but there are still some actions to take (eg, image sizing, review MUI imports)
 
 ## 🏆 Wins
 
@@ -70,10 +70,7 @@ Check the live application on: [https://talitarc.github.io/paws](https://talitar
 
 ## 👩🏻‍💻 AI Usage
 
-    This project uses AI to gain velocity and better understand trade-offs during development. Some examples of how AI was helpful:
-        - GitHub Copilot helped to find information on Vite's documentation faster and how to set its config properly.
-        - AI also helped to consult Material UI components documentation and to decide the best solution for some features (eg, the drawer for the pets' description).
-        - Grammarly was used to review this READ.me.
+This project uses AI to gain velocity and better understand trade-offs during development. Some examples of how AI was helpful: - GitHub Copilot helped to find information on Vite's documentation faster and how to set its config properly. - AI also helped to consult Material UI components documentation and to decide the best solution for some features (eg, the drawer for the pets' description). - Grammarly was used to review this READ.me.
 
 ## 🐶 Content Disclaimer
 
