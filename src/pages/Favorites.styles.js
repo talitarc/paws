@@ -45,6 +45,7 @@ export const favoritesStyles = {
       minWidth: 0,
     },
     avatar: {
+      objectFit: "cover",
       width: 60,
       height: 60,
       marginRight: 2,

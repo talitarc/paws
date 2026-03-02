@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   Container,
   Typography,
@@ -14,21 +14,17 @@ import {
 } from "@mui/material";
 import { DeleteOutline, AddCircleOutline } from "@mui/icons-material";
 import { Link } from "react-router-dom";
+import { useFavorites } from "../hooks/useFavorites";
 import DeleteConfirmDialog from "../components/common/DeleteConfirmDialog";
 import DescriptionDrawer from "../components/common/DescriptionDrawer";
 import { favoritesStyles } from "./Favorites.styles";
 
 const Favorites = () => {
-  const [favorites, setFavorites] = useState([]);
   const [open, setOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [selectedItemForDrawer, setSelectedItemForDrawer] = useState(null);
+  const { favorites, remove } = useFavorites();
   const { emptyState, layout, list, item } = favoritesStyles;
-
-  useEffect(() => {
-    const savedItems = JSON.parse(localStorage.getItem("paws_favorites")) || [];
-    setFavorites(savedItems);
-  }, []);
 
   const handleClickOpen = (item) => {
     setSelectedItem(item);
@@ -41,10 +37,10 @@ const Favorites = () => {
   };
 
   const handleConfirmDelete = () => {
-    const updated = favorites.filter((p) => p.id !== selectedItem.id);
-    setFavorites(updated);
-    localStorage.setItem("paws_favorites", JSON.stringify(updated));
-    handleClose();
+    if (selectedItem) {
+      remove(selectedItem.id);
+      handleClose();
+    }
   };
 
   if (favorites.length === 0) {

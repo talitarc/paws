@@ -1,42 +1,20 @@
-import { useEffect, useState } from "react";
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography, Skeleton } from "@mui/material";
 import Cancel from "@mui/icons-material/Close";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
-import { client, urlFor } from "../sanityClient";
 import ContentCard from "../components/common/ContentCard";
 import ActionButton from "../components/common/ActionButton";
 import { findAPetStyles } from "./FindAPet.styles";
+import { usePets } from "../hooks/usePets";
 
 const FindAPet = () => {
-  const [items, setItems] = useState([]);
-  const { layout, controls } = findAPetStyles;
-  useEffect(() => {
-    const query = '*[_type == "pet"]';
-    client.fetch(query).then((data) => {
-      const formattedItems = data.map((p) => ({
-        id: p._id,
-        type: p.type,
-        name: p.name,
-        breed: p.breed,
-        sex: p.sex,
-        age: p.age,
-        location: p.location,
-        image: urlFor(p.image).url(),
-        alt: p.image.alt,
-        description: p.bio,
-      }));
-      setItems(formattedItems);
-    });
-  }, []);
+  const { layout, skeleton, controls } = findAPetStyles;
+  const { currentItem, loading, nextCard } = usePets();
 
   const handleAction = (action) => {
-    const currentItem = items[0];
-
     if (action === "like") {
       saveToFavorites(currentItem);
     }
-
-    setItems((prev) => prev.slice(1));
+    nextCard();
   };
 
   const saveToFavorites = (item) => {
@@ -52,13 +30,15 @@ const FindAPet = () => {
     }
   };
 
+  if (loading) return <Skeleton variant="rectangular" sx={skeleton} />;
+
   return (
     <>
       <Box sx={layout.swipeArea}>
-        {items.length > 0 ? (
+        {currentItem ? (
           <ContentCard
-            key={items[0].id}
-            item={items[0]}
+            key={currentItem.id}
+            item={currentItem}
             onAction={handleAction}
           />
         ) : (

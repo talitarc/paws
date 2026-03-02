@@ -12,6 +12,13 @@ export const findAPetStyles = {
     },
   },
 
+  skeleton: {
+    width: { xs: 340, sm: "100%" },
+    height: { xs: 530, md: "60vh" },
+    borderRadius: 2,
+    marginTop: "30px",
+  },
+
   controls: {
     buttonStack: {
       display: { xs: "flex", md: "none" },
