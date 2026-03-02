@@ -5,16 +5,7 @@ import path from "path";
 
 export default defineConfig({
   base: "/paws",
-  plugins: [
-    react(),
-    visualizer({
-      open: true,
-      filename: path.resolve(__dirname, "stats.html"),
-      template: "treemap",
-      gzipSize: true,
-      brotliSize: true,
-    }),
-  ],
+  plugins: [react(), visualizer()],
   build: {
     sourcemap: true,
 
