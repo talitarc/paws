@@ -17,7 +17,7 @@ import DescriptionDrawer from "./DescriptionDrawer";
 import { contentCardStyles } from "./ContentCard.styles";
 
 const ContentCard = ({ item, onAction }) => {
-  const { container, navigation, body, actions } = contentCardStyles;
+  const { container, media, navigation, body, actions } = contentCardStyles;
   const { name, sex, breed, age, image, alt, location, type, description } =
     item;
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -61,27 +61,13 @@ const ContentCard = ({ item, onAction }) => {
           <Card sx={container}>
             <CardMedia
               component="img"
-              sx={{
-                maxWidth: "50vh",
-                maxHeight: "30vh",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
+              sx={media}
               image={image}
               alt={alt ? alt : name}
             />
 
             <CardContent sx={body.contentBox}>
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  alignItems: "flex-start",
-                  gap: 8,
-                }}
-              >
+              <Box sx={body.topSection}>
                 <Box sx={{ display: "flex", flexDirection: "column" }}>
                   <Typography variant="h5" fontWeight="900">
                     {name}
@@ -98,10 +84,7 @@ const ContentCard = ({ item, onAction }) => {
                   variant="contained"
                   onClick={() => onAction("like")}
                   aria-label="Add to Favorites List"
-                  sx={{
-                    display: { xs: "none", md: "flex" },
-                    backgroundColor: "action.secondary",
-                  }}
+                  sx={actions.desktopButton}
                 >
                   Add to favorites
                 </Button>

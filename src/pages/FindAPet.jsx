@@ -49,8 +49,6 @@ const FindAPet = () => {
       const updatedFavorites = [item, ...existingFavorites];
 
       localStorage.setItem("paws_favorites", JSON.stringify(updatedFavorites));
-
-      console.log(`${item.name} saved to favorites! 🐾`);
     }
   };
 
