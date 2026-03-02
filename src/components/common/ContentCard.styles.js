@@ -39,6 +39,8 @@ export const contentCardStyles = {
       alignItems: "flex-start",
       paddingBottom: { md: "20px" },
       gap: 8,
+
+      name: { display: "flex", flexDirection: "column" },
     },
     description: {
       display: { xs: "none", md: "flex" },

@@ -68,7 +68,7 @@ const ContentCard = ({ item, onAction }) => {
 
             <CardContent sx={body.contentBox}>
               <Box sx={body.topSection}>
-                <Box sx={{ display: "flex", flexDirection: "column" }}>
+                <Box sx={body.topSection.name}>
                   <Typography variant="h5" fontWeight="900">
                     {name}
                   </Typography>
